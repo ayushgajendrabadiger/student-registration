@@ -2,28 +2,21 @@ import streamlit as st
 import pandas as pd
 from datetime import datetime
 from pathlib import Path
-import uuid
-
-# =========================================================
-# PAGE CONFIG
-# =========================================================
+import uuid
 
 st.set_page_config(
     page_title="Student Registration Portal",
     page_icon="🎓",
     layout="wide"
 )
-
-# =========================================================
+
 # FILE
-# =========================================================
 
 EXCEL_FILE = Path("students.xlsx")
 
 
-# =========================================================
-# CUSTOM CSS
-# =========================================================
+
+# CUSTOM CSS
 
 st.markdown("""
 <style>
@@ -63,10 +56,8 @@ st.markdown("""
 </style>
 """, unsafe_allow_html=True)
 
-
-# =========================================================
-# SAVE DATA
-# =========================================================
+
+# SAVE DATA
 
 def save_student(student):
 
@@ -90,11 +81,8 @@ def save_student(student):
         index=False,
         sheet_name="Students"
     )
-
-
-# =========================================================
-# REGISTRATION PAGE
-# =========================================================
+
+# REGISTRATION PAGE
 
 def registration_page():
 
@@ -112,10 +100,8 @@ def registration_page():
 
     # Progress
     st.progress(0.0)
-
-    # =====================================================
-    # PERSONAL INFORMATION
-    # =====================================================
+
+    # PERSONAL INFORMATION
 
     st.markdown(
         '<div class="section-title">👤 Personal Information</div>',
@@ -165,10 +151,8 @@ def registration_page():
             placeholder="Enter your city"
         )
 
-
-    # =====================================================
-    # ACADEMIC INFORMATION
-    # =====================================================
+
+    # ACADEMIC INFORMATION
 
     st.markdown(
         '<div class="section-title">📚 Academic Information</div>',
@@ -217,11 +201,8 @@ def registration_page():
             value=0.0,
             step=0.01
         )
-
-
-    # =====================================================
-    # SKILLS
-    # =====================================================
+
+    # SKILLS
 
     st.markdown(
         '<div class="section-title">💡 Skills & Interests</div>',
@@ -257,11 +238,8 @@ def registration_page():
             "Other"
         ]
     )
-
-
-    # =====================================================
-    # ABOUT YOU
-    # =====================================================
+
+    # ABOUT YOU
 
     st.markdown(
         '<div class="section-title">📝 About You</div>',
@@ -273,10 +251,7 @@ def registration_page():
         placeholder="Write a short introduction..."
     )
 
-
-    # =====================================================
     # PROFILE PHOTO
-    # =====================================================
 
     st.markdown(
         '<div class="section-title">📸 Profile Photo</div>',
@@ -287,11 +262,8 @@ def registration_page():
         "Upload your photo",
         type=["jpg", "jpeg", "png"]
     )
-
-
-    # =====================================================
-    # DECLARATION
-    # =====================================================
+
+    # DECLARATION
 
     st.markdown(
         '<div class="section-title">🔐 Declaration</div>',
@@ -301,11 +273,8 @@ def registration_page():
     agree = st.checkbox(
         "I confirm that the information provided is correct."
     )
-
-
-    # =====================================================
-    # REGISTER
-    # =====================================================
+
+    # REGISTER
 
     st.write("")
 
@@ -361,11 +330,8 @@ def registration_page():
                 "⚠️ Please accept the declaration."
             )
             return
-
-
-        # =================================================
-        # SKILLS
-        # =================================================
+
+        # SKILLS
 
         skills = []
 
@@ -383,11 +349,8 @@ def registration_page():
 
         if not skills:
             skills.append("None")
-
-
-        # =================================================
-        # REGISTRATION ID
-        # =================================================
+
+        # REGISTRATION ID
 
         registration_id = (
             "STU-" +
@@ -395,11 +358,8 @@ def registration_page():
             "-" +
             uuid.uuid4().hex[:4].upper()
         )
-
-
-        # =================================================
-        # SAVE STUDENT
-        # =================================================
+
+        # SAVE STUDENT
 
         student = {
 
@@ -455,10 +415,8 @@ def registration_page():
         try:
 
             save_student(student)
-
-            # =============================================
-            # DON'T DISPLAY STUDENT INFORMATION
-            # =============================================
+
+            # DON'T DISPLAY STUDENT INFORMATION
 
             st.markdown(
                 """
@@ -492,11 +450,8 @@ def registration_page():
             )
 
             st.error(str(e))
-
-
-# =========================================================
-# ADMIN PAGE
-# =========================================================
+
+# ADMIN PAGE
 
 def admin_page():
 
@@ -606,11 +561,8 @@ def admin_page():
             st.session_state["admin"] = False
 
             st.rerun()
-
-
-# =========================================================
-# SIDEBAR
-# =========================================================
+
+# SIDEBAR
 
 st.sidebar.title("🎓 Student Portal")
 
