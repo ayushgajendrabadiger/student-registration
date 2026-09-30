@@ -1,33 +1,3 @@
-import streamlit as st
-
-st.title("My First Interactive App")
-
-name = st.text_input("Enter your name")
-
-age = st.number_input("Enter your age", min_value=1, max_value=100)
-
-course = st.selectbox(
-    "Choose your course",
-    ["Python", "SQL", "Machine Learning", "Data Science"]
-)
-
-year = st.radio(
-    "Choose your year",
-    ["1st Year", "2nd Year", "3rd Year", "4th Year"]
-)
-
-python = st.checkbox("Do you know Python?")
-
-hours = st.slider(
-    "Daily study hours",
-    0,
-    12,
-    1
-)
-if st.button("Submit"):
-    st.write("Hello", name)
-    st.write("Your age is", age)
-    st.write("Course:", course)
-    st.write("Year:", year)
-    st.write("Knows Python:", python)
-    st.write("Study Hours:", hours)    
+streamlit
+pandas
+openpyxl
